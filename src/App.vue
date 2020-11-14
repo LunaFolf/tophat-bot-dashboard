@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Sidebar from './components/sidebar.vue'
-import Navbar from './components/navbar.vue'
+import Sidebar from '@/components/sidebar.vue'
+import Navbar from '@/components/navbar.vue'
 
 export default {
   name: 'App',
@@ -22,3 +22,6 @@ export default {
   }
 }
 </script>
+<style>
+@import './assets/css/sb-admin-2.min.css';
+</style>

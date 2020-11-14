@@ -61,7 +61,7 @@ export default {
       discordOAuth: {
         urlBase: 'https://discord.com/api/oauth2/authorize',
         clientId: '711948797017718804',
-        redirectUrl: encodeURIComponent(window.location.href + 'oauth2/discord')
+        redirectUrl: encodeURIComponent(window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
       }
     }
   }
