@@ -20,7 +20,7 @@
                 </a>
               </template>
               <template v-else>
-                <a class="nav-link" href="https://discord.com/api/oauth2/authorize?client_id=711948797017718804&redirect_uri=http%3A%2F%2Flocalhost%3A8080&response_type=code&scope=identify">
+                <a class="nav-link" :href="`${discordOAuth.urlBase}?client_id=${discordOAuth.clientId}&redirect_uri=${discordOAuth.redirectUrl}&response_type=code&scope=identify`">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">Log in with Discord</span>
                   <img class="img-profile" src="../assets/img/discord_logo_colour.svg">
                 </a>
@@ -57,7 +57,12 @@
 export default {
   data () {
     return {
-      loggedIn: false
+      loggedIn: false,
+      discordOAuth: {
+        urlBase: 'https://discord.com/api/oauth2/authorize',
+        clientId: '711948797017718804',
+        redirectUrl: encodeURIComponent(window.location.href + 'oauth2/discord')
+      }
     }
   }
 }

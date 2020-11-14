@@ -4,6 +4,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <Navbar />
+        <router-view/>
       </div>
     </div>
   </div>
@@ -21,6 +22,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
