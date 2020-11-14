@@ -12,12 +12,19 @@
 
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                  <img class="img-profile rounded-circle"
-                      src="img/undraw_profile.svg">
-              </a>
+              <template v-if="loggedIn">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                    <img class="img-profile rounded-circle" src="../assets/img/undraw_profile.svg">
+                </a>
+              </template>
+              <template v-else>
+                <a class="nav-link" href="https://discord.com/api/oauth2/authorize?client_id=711948797017718804&redirect_uri=http%3A%2F%2Flocalhost%3A8080&response_type=code&scope=identify">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Log in with Discord</span>
+                  <img class="img-profile" src="../assets/img/discord_logo_colour.svg">
+                </a>
+              </template>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="userDropdown">
@@ -46,3 +53,12 @@
   </nav>
   <!-- End of Topbar -->
 </template>
+<script>
+export default {
+  data () {
+    return {
+      loggedIn: false
+    }
+  }
+}
+</script>
