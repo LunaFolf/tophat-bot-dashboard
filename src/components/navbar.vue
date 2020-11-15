@@ -2,11 +2,6 @@
     <!-- Topbar -->
   <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-          <i class="fa fa-bars"></i>
-      </button>
-
       <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
@@ -35,6 +30,7 @@
               <template v-else>
                 <a class="nav-link" :href="`${discordOAuth.urlBase}?client_id=${discordOAuth.clientId}&redirect_uri=${discordOAuth.redirectUrl}&response_type=code&scope=identify%20guilds`">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">Log in with Discord</span>
+                  <span class="mr-2 d-none d-sm-inline d-lg-none text-gray-600 small">Login</span>
                   <img class="img-profile" src="../assets/img/discord_logo_colour.svg">
                 </a>
               </template>
