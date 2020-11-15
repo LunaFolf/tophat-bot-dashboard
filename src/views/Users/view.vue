@@ -2,9 +2,25 @@
   <div>
     <div class="container-fluid">
       <div class="card row">
-        <div class="card-body">
-          <h1 class="h3 mb-0 text-gray-800">{{ user.name }}</h1>
-          <img class="rounded-circle float-right" width="256px" :src="user.avatarFullUrl"/>
+        <div class="card-body row">
+          <div class="col">
+            <h1 class="h3 text-gray-800">
+              {{ user.name }}
+              <span v-if="user.bot" class="badge badge-primary mr-2">Bot</span>
+              <span v-if="user.leftServer" class="badge badge-danger">Left Server</span>
+            </h1>
+            <div>
+              <span class="font-weight-bold">ID: </span>
+              <span>{{ user.id }}</span>
+            </div>
+            <div>
+              <span class="font-weight-bold">Tag: </span>
+              <span>{{ user.tag }}</span>
+            </div>
+          </div>
+          <div class="col">
+            <img class="rounded-circle float-right userPic" :src="user.avatarFullUrl"/>
+          </div>
         </div>
       </div>
     </div>
@@ -21,3 +37,8 @@ export default {
   }
 }
 </script>
+<style>
+  .userPic {
+    height: 100%;
+  }
+</style>
