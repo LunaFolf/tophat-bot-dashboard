@@ -18,12 +18,17 @@ const routes = [
   {
     path: '/warns',
     name: 'Warns',
-    component: () => import(/* webpackChunkName: "warns" */ '../views/Warns.vue')
+    component: () => import(/* webpackChunkName: "warns" */ '../views/Warns/index.vue')
   },
   {
     path: '/users',
     name: 'Users',
-    component: () => import(/* webpackChunkName: "users" */ '../views/Users.vue')
+    component: () => import(/* webpackChunkName: "users" */ '../views/Users/index.vue')
+  },
+  {
+    path: '/users/:id',
+    name: 'UsersView',
+    component: () => import(/* webpackChunkName: "users" */ '../views/Users/view.vue')
   },
   {
     path: '/applications',

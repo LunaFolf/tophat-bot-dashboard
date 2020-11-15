@@ -1,23 +1,32 @@
 <template>
-  <div class="container-fluid table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>User</th>
-          <th>Type</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody v-if="applications">
-        <tr v-for="app in applications" :key="app.id">
-          <td>{{app.id}}</td>
-          <td>{{app.user.tag}}</td>
-          <td>{{app.type.name}}</td>
-          <td>{{app.status | status}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Warns</h1>
+    </div>
+    <div class="container-fluid table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Type</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody v-if="applications">
+          <tr v-for="app in applications" :key="app.id">
+            <td>{{app.id}}</td>
+            <td>
+              <img class="rounded-circle" width="42px" :src="app.user | avatarUrl">
+              <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
+              <span v-if="app.user.leftServer" class="badge badge-danger">Left Server</span>
+            </td>
+            <td>{{app.type.name}}</td>
+            <td>{{app.status | status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>
@@ -36,6 +45,11 @@ export default {
         default:
           return status
       }
+    },
+    avatarUrl (user) {
+      const cdn = `https://cdn.discordapp.com/`
+      if (user.avatar) return `${cdn}avatars/${user.id}/${user.avatar}.jpg`
+      return `${cdn}embed/avatars/${user.discriminator % 5}.png`
     }
   },
   data () {
