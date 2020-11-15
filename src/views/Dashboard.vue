@@ -1,7 +1,12 @@
 <template>
   <div>
     <div v-if="!auth.access_token" class="text-center">
-      Please login
+      <div>Please login</div>
+      <br>
+      <a class="nav-link" :href="`${discordOAuth.urlBase}?client_id=${discordOAuth.clientId}&redirect_uri=${discordOAuth.redirectUrl}&response_type=code&scope=identify%20guilds`">
+        <span class="text-gray-600 small">Log in with Discord</span>
+        <img class="img-profile" src="../assets/img/discord_logo_colour.svg" width="56px">
+      </a>
     </div>
     <div class="row" v-else-if="dashboard">
 
@@ -97,7 +102,12 @@ export default {
   components: { spinner },
   data () {
     return {
-      dashboard: null
+      dashboard: null,
+      discordOAuth: {
+        urlBase: 'https://discord.com/api/oauth2/authorize',
+        clientId: '711948797017718804',
+        redirectUrl: encodeURIComponent(window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
+      }
     }
   },
   computed: {

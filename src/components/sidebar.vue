@@ -8,20 +8,22 @@
       </a>
 
       <span v-for="(section, sectionKey) in sections" :key="'section-' + sectionKey">
+        <template v-if="!section.requiresAuth || auth.access_token">
         <hr v-if="sectionKey < 1" class="sidebar-divider my-0">
         
         <div v-if="section.title" class="sidebar-heading">
           {{section.title}}
         </div>
 
-        <li v-for="(link, linkKey) in section.links" :key="'section-' + sectionKey + '-link-' + linkKey" class="nav-item">
-          <a class="nav-link" @click="$router.push({name:link.name})">
-              <i :class="`fas ${link.icon}`"></i>
-              <span>{{link.name}}</span>
-          </a>
-      </li>
+          <li v-for="(link, linkKey) in section.links" :key="'section-' + sectionKey + '-link-' + linkKey" class="nav-item">
+            <a class="nav-link" @click="$router.push({name:link.name})">
+                <i :class="`fas ${link.icon}`"></i>
+                <span>{{link.name}}</span>
+            </a>
+          </li>
 
         <hr class="sidebar-divider">
+        </template>
       </span>
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -48,6 +50,7 @@ export default {
         },
         {
           title: 'Database',
+          requiresAuth: true,
           links: [
             { name: 'Warns', icon: 'fa-file-exclamation' },
             { name: 'Users', icon: 'fa-book-user' },
