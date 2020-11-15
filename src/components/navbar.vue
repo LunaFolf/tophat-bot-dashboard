@@ -2,6 +2,11 @@
     <!-- Topbar -->
   <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+      <button class="btn btn-link rounded-circle mr-3" @click="$store.dispatch('ui/toggleSidebar')">
+          <i v-if="!sidebarOpen" class="fa fa-bars"></i>
+          <i v-else class="fa fa-chevron-double-left"></i>
+      </button>
+
       <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
@@ -56,7 +61,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      auth: 'authentication/authentication'
+      auth: 'authentication/authentication',
+      sidebarOpen: 'ui/sidebarOpen'
     })
   }
 }

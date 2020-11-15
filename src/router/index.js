@@ -31,11 +31,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "applications" */ '../views/Applications.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
     path: '/oauth2/discord',
     name: 'OAuthDiscord',
     component: () => import(/* webpackChunkName: "authentication" */ '../views/OAuth/Discord.vue')

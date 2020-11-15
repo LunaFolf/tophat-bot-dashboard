@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <Sidebar v-show="shouldShow()" />
+    <Sidebar v-show="shouldShow() && sidebarOpen" />
     <div id="content-wrapper" class="d-flex flex-column">
       <Navbar v-show="shouldShow()" />
       <div id="content">
@@ -16,6 +16,7 @@
 <script>
 import Sidebar from '@/components/sidebar.vue'
 import Navbar from '@/components/navbar.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -27,6 +28,11 @@ export default {
     return {
       routesToFullscreen: ['Login', 'OAuthDiscord']
     }
+  },
+  computed: {
+    ...mapGetters({
+      sidebarOpen: 'ui/sidebarOpen'
+    })
   },
   methods: {
     shouldShow () {

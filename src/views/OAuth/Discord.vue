@@ -3,7 +3,7 @@
 </template>
 <script>
 import loadingScreen from '@/components/loadingScreen.vue';
-import DiscordOauth2 from 'discord-oauth2';
+import axios from 'axios';
 import { DateTime } from 'luxon';
 
 export default {
@@ -16,20 +16,21 @@ export default {
     next()
   },
   created () {
-    const oauth = new DiscordOauth2();
-    oauth.tokenRequest({
-      clientId: process.env.VUE_APP_discord_client_id,
-      clientSecret: process.env.VUE_APP_discord_client_secret,
-      code: this.$route.query.code,
-      scope: 'identify guilds',
-      grantType: 'authorization_code',
+    const formData = new FormData();
+    formData.append('client_id', process.env.VUE_APP_discord_client_id)
+    formData.append('client_secret', process.env.VUE_APP_discord_client_secret)
+    formData.append('code', this.$route.query.code)
+    formData.append('scope', 'identify guilds')
+    formData.append('grant_type', 'authorization_code')
+    formData.append('redirect_uri', window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
 
-      redirectUri: window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord'
+    axios.post('https://discord.com/api/v8/oauth2/token', formData, {
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }
     }).then(res => {
       var expiryDate = DateTime.local()
       this.$store.dispatch('authentication/saveToken', {
-        token: res.access_token,
-        expiry: expiryDate.plus({ seconds: res.expires_in }).toISO()
+        token: res.data.access_token,
+        expiry: expiryDate.plus({ seconds: res.data.expires_in }).toISO()
       })
 
       this.$router.push({ name: 'Login' })

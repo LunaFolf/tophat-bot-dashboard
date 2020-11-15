@@ -11,10 +11,8 @@
     "@vuex-orm/core": "^0.36.3",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
-    "discord-oauth2": "^2.6.0",
     "luxon": "^1.25.0",
     "vue": "^2.6.12",
-    "vue-cookies": "^1.7.4",
     "vue-router": "^3.2.0",
     "vuex": "^3.5.1",
     "vuex-persistedstate": "^4.0.0-beta.1"

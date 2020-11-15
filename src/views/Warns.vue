@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <table class="table">
+  <div class="container-fluid table-responsive">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>User</th>

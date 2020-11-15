@@ -27,7 +27,7 @@
       </span>
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div v-if="auth.access_token" class="text-center d-none d-md-inline">
+      <div v-if="auth.access_token" class="text-center">
           <button class="rounded-circle border-0 rounded-btn" title="Sign out" @click="signout">
               <i class="fas fa-sign-out-alt"></i>
           </button>
