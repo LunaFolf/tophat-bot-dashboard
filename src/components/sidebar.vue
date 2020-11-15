@@ -26,21 +26,21 @@
       </div>
 
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" @click="$router.push({name:'Warns'})">
               <i class="fas fa-file-exclamation"></i>
               <span>Warns</span>
           </a>
       </li>
 
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link">
               <i class="fas fa-users"></i>
               <span>Users</span>
           </a>
       </li>
 
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link">
               <i class="fas fa-folder-tree"></i>
               <span>Applications</span>
           </a>
@@ -86,5 +86,8 @@ export default {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
+}
+.nav-link {
+  cursor: pointer;
 }
 </style>
