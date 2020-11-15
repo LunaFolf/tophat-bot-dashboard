@@ -7,46 +7,22 @@
           <img alt="Jax logo" src="../assets/spinner-title.png" height="56px">
       </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <span v-for="(section, sectionKey) in sections" :key="'section-' + sectionKey">
+        <hr v-if="sectionKey < 1" class="sidebar-divider my-0">
+        
+        <div v-if="section.title" class="sidebar-heading">
+          {{section.title}}
+        </div>
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-          <a class="nav-link" href="/">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-          Database
-      </div>
-
-      <li class="nav-item">
-          <a class="nav-link" @click="$router.push({name:'Warns'})">
-              <i class="fas fa-file-exclamation"></i>
-              <span>Warns</span>
+        <li v-for="(link, linkKey) in section.links" :key="'section-' + sectionKey + '-link-' + linkKey" class="nav-item">
+          <a class="nav-link" @click="$router.push({name:link.name})">
+              <i :class="`fas ${link.icon}`"></i>
+              <span>{{link.name}}</span>
           </a>
       </li>
 
-      <li class="nav-item">
-          <a class="nav-link">
-              <i class="fas fa-users"></i>
-              <span>Users</span>
-          </a>
-      </li>
-
-      <li class="nav-item">
-          <a class="nav-link">
-              <i class="fas fa-folder-tree"></i>
-              <span>Applications</span>
-          </a>
-      </li>
-
-      <hr class="sidebar-divider">
+        <hr class="sidebar-divider">
+      </span>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div v-if="auth.access_token" class="text-center d-none d-md-inline">
@@ -62,6 +38,25 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  data () {
+    return {
+      sections: [
+        {
+          links: [
+            { name: 'Dashboard', icon: 'fa-tachometer-alt' }
+          ]
+        },
+        {
+          title: 'Database',
+          links: [
+            { name: 'Warns', icon: 'fa-file-exclamation' },
+            { name: 'Users', icon: 'fa-book-user' },
+            { name: 'Applications', icon: 'fa-folder' }
+          ]
+        }
+      ]
+    }
+  },
   computed: {
     ...mapGetters({
       auth: 'authentication/authentication'
