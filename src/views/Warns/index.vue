@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import { get } from '../../api/warns'
 import warnRow from './warn-row.vue'
 
 export default {
@@ -31,7 +31,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://api.jaxbot.co.uk/warns').then(res => {
+    get().then(res => {
       this.warns = res.data.data.warns
     })
   }

@@ -97,7 +97,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import axios from 'axios'
+import { get } from '../api/dashboard'
 import spinner from '@/components/spinner'
 
 export default {
@@ -119,7 +119,7 @@ export default {
     })
   },
   created () {
-    axios.get('https://api.jaxbot.co.uk/dashboard').then(res => {
+    get().then(res => {
       this.dashboard = res.data.data
     })
   }

@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import { get } from '../api/applications'
 
 export default {
   filters: {
@@ -58,7 +58,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://api.jaxbot.co.uk/applications').then(res => {
+    get().then(res => {
       this.applications = res.data.data.applications
     })
   }

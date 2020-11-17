@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import { get } from '../../api/users'
 import { DateTime } from 'luxon'
 import User from '../../store/models/user.js'
 
@@ -37,7 +37,7 @@ export default {
     }
   },
   created () {
-    axios.get('https://api.jaxbot.co.uk/users').then(res => {
+    get().then(res => {
       this.users = res.data.data.users
       User.insert({
         data: res.data.data.users

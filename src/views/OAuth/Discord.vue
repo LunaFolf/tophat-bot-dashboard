@@ -2,8 +2,8 @@
   <loading-screen message="Authorizing Discord Token..." />
 </template>
 <script>
-import loadingScreen from '@/components/loadingScreen.vue';
-import axios from 'axios';
+import loadingScreen from '@/components/loadingScreen.vue'
+import { postOauth } from '../../api/discord'
 import { DateTime } from 'luxon';
 
 export default {
@@ -24,8 +24,13 @@ export default {
     formData.append('grant_type', 'authorization_code')
     formData.append('redirect_uri', window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
 
-    axios.post('https://discord.com/api/v8/oauth2/token', formData, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    postOauth({
+      'client_id': process.env.VUE_APP_discord_client_id,
+      'client_secret': process.env.VUE_APP_discord_client_secret,
+      'code': this.$route.query.code,
+      'redirect_uri': window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord',
+      'scope': 'identify guilds',
+      'grant_type': 'authorization_code',
     }).then(res => {
       var expiryDate = DateTime.local()
       this.$store.dispatch('authentication/saveToken', {
