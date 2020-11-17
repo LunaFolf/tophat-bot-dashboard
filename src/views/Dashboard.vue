@@ -120,7 +120,7 @@ export default {
   },
   created () {
     get().then(res => {
-      this.dashboard = res.data.data
+      this.dashboard = res.data
     })
   }
 }

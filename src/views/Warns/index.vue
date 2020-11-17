@@ -32,7 +32,7 @@ export default {
   },
   created () {
     get().then(res => {
-      this.warns = res.data.data.warns
+      this.warns = res.data.warns
     })
   }
 }

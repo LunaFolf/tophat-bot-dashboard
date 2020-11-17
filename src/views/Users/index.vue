@@ -38,9 +38,9 @@ export default {
   },
   created () {
     get().then(res => {
-      this.users = res.data.data.users
+      this.users = res.data.users
       User.insert({
-        data: res.data.data.users
+        data: res.data.users
       })
     })
   }

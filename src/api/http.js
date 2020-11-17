@@ -1,9 +1,8 @@
 const apiBaseUrl = process.env.VUE_APP_jax_api_url
-// const clientToken = process.env.VUE_APP_jax_client_token
+const clientToken = process.env.VUE_APP_jax_client_token
 
 const api = {
   URL (url) {
-    console.log(url)
     return new URL(url.startsWith('http') ? url : apiBaseUrl + url)
   },
   get (url, options = {}) {
@@ -19,29 +18,28 @@ const api = {
   }
 }
 
-function httpRequest (url, config = {}) {
-  console.log(url)
+async function httpRequest (url, config = {}) {
   let requestOptions = {
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'omit',
     method: config.method || 'GET',
     headers: {
-      Origin: url.origin,
       ...config.headers
     }
   }
-  // if (url.href.includes(apiBaseUrl)) requestOptions.headers['jax-client-token'] = clientToken
+  if (url.href.includes(apiBaseUrl)) requestOptions.headers['jax-client-token'] = clientToken
 
-  if (!(config.body instanceof FormData)) {
-    requestOptions.headers['Content-Type'] = 'application/json'
+  if (config.body) {
+    if (!(config.body instanceof FormData)) {
+      requestOptions.headers['Content-Type'] = 'application/json'
+    }
+    requestOptions.body = config.body
   }
 
-  if (config.body) requestOptions.body = config.body
-
-  console.log(requestOptions)
-
   return fetch(url, requestOptions)
+    .then(async res => {
+      return res.json().then(json => {
+        return res.ok ? json : Promise.reject(json)
+      })
+    })
 }
 
 export default api

@@ -59,7 +59,7 @@ export default {
   },
   created () {
     get().then(res => {
-      this.applications = res.data.data.applications
+      this.applications = res.data.applications
     })
   }
 }
