@@ -12,6 +12,7 @@ const api = {
   post (url, data, options = {}) {
     var headers = options.headers || {}
     return httpRequest(api.URL(url), {
+      method: 'POST',
       body: data instanceof FormData ? data : JSON.stringify(data),
       headers
     })
