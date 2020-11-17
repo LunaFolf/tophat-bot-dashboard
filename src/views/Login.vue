@@ -14,7 +14,7 @@ export default {
       return
     }
     getUser(auth.access_token).then(res => {
-      this.$store.dispatch("authentication/saveUser", res.data)
+      this.$store.dispatch("authentication/saveUser", res)
       this.$router.push({ name: 'Dashboard' })
     })
   }

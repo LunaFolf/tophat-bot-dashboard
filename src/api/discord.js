@@ -7,11 +7,11 @@ export function getUser (access_token) {
 }
 
 export function postOauth (data) {
-  const formData = new FormData();
+  const params = new URLSearchParams()
   for (var key in data) {
-    formData.append(key, data[key])
+    params.append(key, data[key])
   }
-  return http.post('https://discord.com/api/v8/oauth2/token', formData, {
+  return http.post('https://discord.com/api/v8/oauth2/token', params, {
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   })
 }

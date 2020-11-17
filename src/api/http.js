@@ -13,7 +13,7 @@ const api = {
     var headers = options.headers || {}
     return httpRequest(api.URL(url), {
       method: 'POST',
-      body: data instanceof FormData ? data : JSON.stringify(data),
+      body: data instanceof FormData || data instanceof URLSearchParams ? data : JSON.stringify(data),
       headers
     })
   }
@@ -29,7 +29,11 @@ async function httpRequest (url, config = {}) {
   if (url.href.includes(apiBaseUrl)) requestOptions.headers['jax-client-token'] = clientToken
 
   if (config.body) {
-    if (!(config.body instanceof FormData)) {
+    if (config.body instanceof FormData) {
+      requestOptions.headers['Content-Type'] = 'multipart/form-data'
+    } else if (config.body instanceof URLSearchParams) {
+      requestOptions.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    } else {
       requestOptions.headers['Content-Type'] = 'application/json'
     }
     requestOptions.body = config.body

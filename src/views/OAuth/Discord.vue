@@ -34,8 +34,8 @@ export default {
     }).then(res => {
       var expiryDate = DateTime.local()
       this.$store.dispatch('authentication/saveToken', {
-        token: res.data.access_token,
-        expiry: expiryDate.plus({ seconds: res.data.expires_in }).toISO()
+        token: res.access_token,
+        expiry: expiryDate.plus({ seconds: res.expires_in }).toISO()
       })
 
       this.$router.push({ name: 'Login' })
