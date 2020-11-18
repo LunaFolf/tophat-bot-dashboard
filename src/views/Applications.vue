@@ -14,7 +14,7 @@
         </thead>
         <tbody v-if="applications">
           <tr v-for="app in applications" :key="app.id">
-            <td colspan="2">
+            <td colspan="2" class="clickable" @click="$router.push({ name: 'UsersView', params: { id: app.user.id } })">
               <img class="rounded-circle" width="42px" :src="app.user | avatarUrl">
               <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
               <span v-if="app.user.leftServer" class="badge badge-danger float-right">Left Server</span>
