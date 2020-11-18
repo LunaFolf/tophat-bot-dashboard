@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container-fluid">
-      <div class="card row">
+      <div v-if="user" class="card row">
         <div class="card-body row">
           <div class="col">
             <h1 class="h3 text-gray-800">
@@ -23,16 +23,32 @@
           </div>
         </div>
       </div>
+      <div v-else class="text-center">
+        <spinner />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import User from '../../store/models/user.js'
+import { get } from '../../api/users'
+import spinner from '@/components/spinner'
 
 export default {
+  components: { spinner },
   computed: {
     user () {
       return User.find(this.$route.params.id)
+    }
+  },
+  created () {
+    if (!this.user) {
+      get().then(res => {
+        this.users = res.data.users
+        User.insert({
+          data: res.data.users
+        })
+      })
     }
   }
 }

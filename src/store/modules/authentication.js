@@ -17,7 +17,8 @@ const state = {
 }
 
 const getters = {
-  authentication: state => state
+  authentication: state => state,
+  isAuthed: state => !!state.access_token
 }
 
 const actions = {
@@ -29,7 +30,6 @@ const actions = {
   },
   logout ({commit}) {
     commit('logout')
-    router.go()
   }
 }
 
@@ -50,6 +50,7 @@ const mutations = {
     for (var key in initalState) {
       state[key] = initalState[key]
     }
+    router.push({ name: 'Logout' })
   }
 }
 

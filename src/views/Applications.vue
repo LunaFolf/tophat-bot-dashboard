@@ -3,7 +3,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Applications</h1>
     </div>
-    <div class="container-fluid table-responsive">
+    <div v-if="applications.length" class="container-fluid table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -26,12 +26,17 @@
         </tbody>
       </table>
     </div>
+    <div v-else class="text-center">
+      <spinner />
+    </div>
   </div>
 </template>
 <script>
 import { get } from '../api/applications'
+import spinner from '@/components/spinner'
 
 export default {
+  components: { spinner },
   filters: {
     status (status) {
       switch (status) {
