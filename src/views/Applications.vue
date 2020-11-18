@@ -17,8 +17,8 @@
             <td colspan="2">
               <img class="rounded-circle" width="42px" :src="app.user | avatarUrl">
               <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
-              <span v-if="user.leftServer" class="badge badge-danger float-right">Left Server</span>
-              <span v-if="user.bot" class="badge badge-primary float-right mr-1">BOT</span>
+              <span v-if="app.user.leftServer" class="badge badge-danger float-right">Left Server</span>
+              <span v-if="app.user.bot" class="badge badge-primary float-right mr-1">BOT</span>
             </td>
             <td>{{app.type.name}}</td>
             <td>{{app.status | status}}</td>
