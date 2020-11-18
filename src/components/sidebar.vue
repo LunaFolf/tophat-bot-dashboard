@@ -10,13 +10,18 @@
       <span v-for="(section, sectionKey) in sections" :key="'section-' + sectionKey">
         <template v-if="!section.requiresAuth || auth.access_token">
         <hr v-if="sectionKey < 1" class="sidebar-divider my-0">
-        
+
         <div v-if="section.title" class="sidebar-heading">
           {{section.title}}
         </div>
 
-          <li v-for="(link, linkKey) in section.links" :key="'section-' + sectionKey + '-link-' + linkKey" class="nav-item">
-            <a class="nav-link" @click="$router.push({name:link.name})">
+          <li
+            v-for="(link, linkKey) in section.links"
+            :key="'section-' + sectionKey + '-link-' + linkKey"
+            :class="{active: $route.name === link.name}"
+            class="nav-item"
+            >
+            <a class="nav-link" @click="$route.name === link.name ? null : $router.push({name:link.name})">
                 <i :class="`fas ${link.icon}`"></i>
                 <span>{{link.name}}</span>
             </a>
@@ -74,7 +79,7 @@ export default {
 </script>
 <style style="stylus">
 .sidebar {
-  background-image: linear-gradient(to bottom right, #209cff, #68e0cf)
+  background-image: linear-gradient(to bottom right, #209cffee, #68e0cfdd)
 }
 .rounded-btn {
   width: 2.5rem;

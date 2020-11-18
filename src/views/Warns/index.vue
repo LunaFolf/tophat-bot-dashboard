@@ -7,9 +7,8 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>User</th>
+            <th colspan="2">User</th>
             <th>Reason</th>
-            <th>Date</th>
           </tr>
         </thead>
         <tbody v-if="warns">

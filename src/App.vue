@@ -42,6 +42,14 @@ export default {
 <style>
 @import './assets/css/sb-admin-2.css';
 
+#wrapper {
+  background-image: url('./assets/webb.png')
+}
+
+#content-wrapper {
+  background-color: rgba(255, 255, 255, 0.85)!important;
+}
+
 #content {
   padding: 16px;
   padding-top: 0px;

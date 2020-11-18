@@ -1,25 +1,24 @@
 <template>
   <div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Warns</h1>
+      <h1 class="h3 mb-0 text-gray-800">Applications</h1>
     </div>
     <div class="container-fluid table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>User</th>
+            <th colspan="2">User</th>
             <th>Type</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody v-if="applications">
           <tr v-for="app in applications" :key="app.id">
-            <td>{{app.id}}</td>
-            <td>
+            <td colspan="2">
               <img class="rounded-circle" width="42px" :src="app.user | avatarUrl">
               <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
-              <span v-if="app.user.leftServer" class="badge badge-danger">Left Server</span>
+              <span v-if="user.leftServer" class="badge badge-danger float-right">Left Server</span>
+              <span v-if="user.bot" class="badge badge-primary float-right mr-1">BOT</span>
             </td>
             <td>{{app.type.name}}</td>
             <td>{{app.status | status}}</td>
