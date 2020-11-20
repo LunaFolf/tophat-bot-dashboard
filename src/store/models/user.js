@@ -14,7 +14,8 @@ export default class User extends Model {
       bot: this.boolean(false),
       leftServer: this.boolean(false),
       clanMember: this.boolean(false),
-      vip: this.boolean(false)
+      vip: this.boolean(false),
+      createdAt: this.string()
     }
   }
 

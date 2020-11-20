@@ -31,7 +31,11 @@ export default {
   components: { userRow, spinner },
   computed: {
     users () {
-      return User.all()
+      return User.query()
+        .orderBy('leftServer', 'asc')
+        .orderBy('bot', 'asc')
+        .orderBy('createdAt', 'asc')
+        .get()
     }
   },
   created () {
