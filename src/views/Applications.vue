@@ -19,6 +19,8 @@
               <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
               <span v-if="app.user.leftServer" class="badge badge-danger float-right">Left Server</span>
               <span v-if="app.user.bot" class="badge badge-primary float-right mr-1">BOT</span>
+              <span v-if="app.user.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
+              <span v-if="app.user.vip" class="badge badge-dark float-right mr-1">VIP</span>
             </td>
             <td>{{app.type.name}}</td>
             <td>{{app.status | status}}</td>

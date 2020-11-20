@@ -12,7 +12,9 @@ export default class User extends Model {
       discriminator: this.string(),
       avatar: this.string(null).nullable(),
       bot: this.boolean(false),
-      leftServer: this.boolean(false)
+      leftServer: this.boolean(false),
+      clanMember: this.boolean(false),
+      vip: this.boolean(false)
     }
   }
 
