@@ -14,15 +14,15 @@
         </thead>
         <tbody v-if="applications">
           <tr v-for="app in applications" :key="app.id">
-            <td colspan="2" class="clickable" @click="$router.push({ name: 'UsersView', params: { id: app.user.id } })">
-              <img class="rounded-circle" width="42px" :src="app.user | avatarUrl">
-              <span class="mr-2 ml-2 text-gray-600">{{app.user ? app.user.tag : app.UserId}}</span>
-              <span v-if="app.user.leftServer" class="badge badge-danger float-right">Left Server</span>
-              <span v-if="app.user.bot" class="badge badge-primary float-right mr-1">BOT</span>
-              <span v-if="app.user.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
-              <span v-if="app.user.vip" class="badge badge-dark float-right mr-1">VIP</span>
+            <td colspan="2" class="clickable" @click="$router.push({ name: 'UsersView', params: { id: app.User.id } })">
+              <img class="rounded-circle" width="42px" :src="app.User | avatarUrl">
+              <span class="mr-2 ml-2 text-gray-600">{{app.User ? app.User.tag : app.UserId}}</span>
+              <span v-if="app.User.leftServer" class="badge badge-danger float-right">Left Server</span>
+              <span v-if="app.User.bot" class="badge badge-primary float-right mr-1">BOT</span>
+              <span v-if="app.User.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
+              <span v-if="app.User.vip" class="badge badge-dark float-right mr-1">VIP</span>
             </td>
-            <td>{{app.type.name}}</td>
+            <td>{{app.ApplicationType.name}}</td>
             <td>{{app.status | status}}</td>
           </tr>
         </tbody>

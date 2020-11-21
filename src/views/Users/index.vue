@@ -41,6 +41,7 @@ export default {
   created () {
     get().then(res => {
       this.users = res.data.users
+      User.deleteAll()
       User.insert({
         data: res.data.users
       })

@@ -1,24 +1,14 @@
 <template>
     <!-- Topbar -->
-  <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+  <div>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow mb-4">
 
       <button class="btn btn-link rounded-circle mr-3" @click="$store.dispatch('ui/toggleSidebar')">
           <i v-if="!sidebarOpen" class="fa fa-bars"></i>
           <i v-else class="fa fa-chevron-double-left"></i>
       </button>
 
-      <form
-        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-      </form>
+      <search-bar v-model="newSearchQuery" @search="search" />
 
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
@@ -43,27 +33,46 @@
 
       </ul>
 
-  </nav>
+    </nav>
+  </div>
   <!-- End of Topbar -->
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import searchBar from '@/components/searchbar.vue'
 
 export default {
+  components: {
+    searchBar
+  },
   data () {
     return {
       discordOAuth: {
         urlBase: 'https://discord.com/api/oauth2/authorize',
         clientId: '711948797017718804',
         redirectUrl: encodeURIComponent(window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
-      }
+      },
+      newSearchQuery: null
     }
   },
   computed: {
     ...mapGetters({
       auth: 'authentication/authentication',
-      sidebarOpen: 'ui/sidebarOpen'
+      sidebarOpen: 'ui/sidebarOpen',
+      searchQuery: 'search/query'
     })
+  },
+  watch: {
+    searchQuery (val) {
+      this.newSearchQuery = val
+    }
+  },
+  methods: {
+    search () {
+      if (this.newSearchQuery && this.newSearchQuery.length >= 3) {
+        this.$store.dispatch('search/setQuery', this.newSearchQuery)
+      } else alert('Query length must be 3 characters or longer')
+    }
   }
 }
 </script>

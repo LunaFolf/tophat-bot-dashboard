@@ -1,6 +1,6 @@
 <template>
-  <tr>
-    <td colspan="2" class="clickable" @click="$router.push({ name: 'UsersView', params: { id: user.id } })">
+  <tr class="clickable" @click="$router.push({ name: 'UsersView', params: { id: user.id } })">
+    <td>
       <img class="rounded-circle" width="42px" :src="user.avatarUrl">
       <span class="mr-2 ml-2 text-gray-600">{{user.name}}</span>
       <span v-if="user.leftServer" class="badge badge-danger float-right">Left Server</span>
@@ -8,29 +8,13 @@
       <span v-if="user.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
       <span v-if="user.vip" class="badge badge-dark float-right mr-1">VIP</span>
     </td>
-    <td>{{warn.reason}}</td>
+    <td class="d-none d-xl-table-cell">
+      {{ user.id }}
+    </td>
   </tr>
 </template>
 <script>
-import { DateTime } from 'luxon'
-import User from '../../store/models/user.js'
-
 export default {
-  filters: {
-    date (date) {
-      return DateTime.fromISO(date).toISODate()
-    }
-  },
-  props: {
-    warn: {
-      required: true,
-      type: Object
-    }
-  },
-  computed: {
-    user () {
-      return User.find(this.warn.UserId)
-    }
-  }
+  props: ['user']
 }
 </script>

@@ -17,6 +17,11 @@ const routes = [
     component: Dashboard
   },
   {
+    path: '/search-results',
+    name: 'SearchResults',
+    component: () => import(/* webpackChunkName: "search" */ '../views/SearchResults/index.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "authentication" */ '../views/Login.vue')
