@@ -22,7 +22,7 @@
             class="nav-item"
             >
             <a class="nav-link" @click="$route.name === link.name ? null : $router.push({name:link.name})">
-                <i :class="`fas ${link.icon}`"></i>
+                <i :class="`${link.icon}`"></i>
                 <span>{{link.name}}</span>
             </a>
           </li>
@@ -50,16 +50,17 @@ export default {
       sections: [
         {
           links: [
-            { name: 'Dashboard', icon: 'fa-tachometer-alt' }
+            { name: 'Dashboard', icon: 'fas fa-tachometer-alt' }
           ]
         },
         {
           title: 'Database',
           requiresAuth: true,
           links: [
-            { name: 'Warns', icon: 'fa-file-exclamation' },
-            { name: 'Users', icon: 'fa-book-user' },
-            { name: 'Applications', icon: 'fa-folder' }
+            { name: 'Users', icon: 'far fa-users' },
+            { name: 'Applications', icon: 'far fa-folder' },
+            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fal fa-hand-middle-finger' : 'far fa-exclamation-circle' },
+            { name: 'Bans', icon: 'far fa-ban' }
           ]
         }
       ]

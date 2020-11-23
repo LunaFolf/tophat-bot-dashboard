@@ -38,6 +38,12 @@ const routes = [
     beforeEnter: isAuthed
   },
   {
+    path: '/bans',
+    name: 'Bans',
+    component: () => import(/* webpackChunkName: "bans" */ '../views/Bans/index.vue'),
+    beforeEnter: isAuthed
+  },
+  {
     path: '/users',
     name: 'Users',
     component: () => import(/* webpackChunkName: "users" */ '../views/Users/index.vue'),

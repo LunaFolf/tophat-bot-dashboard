@@ -13,6 +13,7 @@ export default class User extends Model {
       avatar: this.string(null).nullable(),
       bot: this.boolean(false),
       leftServer: this.boolean(false),
+      banned: this.boolean(false),
       clanMember: this.boolean(false),
       vip: this.boolean(false),
       createdAt: this.string()
