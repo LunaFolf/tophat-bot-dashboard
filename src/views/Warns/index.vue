@@ -22,9 +22,10 @@
   </div>
 </template>
 <script>
-import { get } from '../../api/warns'
+import { get } from '@/api/warns'
 import warnRow from './warn-row.vue'
 import spinner from '@/components/spinner'
+import User from '@/store/models/user.js'
 
 export default {
   components: { spinner, warnRow },
@@ -36,6 +37,13 @@ export default {
   created () {
     get().then(res => {
       this.warns = res.data.warns
+      var users = []
+      res.data.warns.forEach(warn => {
+        if (!users.includes(warn.User)) users.push(warn.User)
+      })
+      User.insert({
+        data: users
+      })
     })
   }
 }

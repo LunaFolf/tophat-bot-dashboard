@@ -1,5 +1,7 @@
 const apiBaseUrl = process.env.VUE_APP_jax_api_url
 const clientToken = process.env.VUE_APP_jax_client_token
+import Vue from 'vue'
+import store from '@/store'
 
 const api = {
   URL (url) {
@@ -26,7 +28,10 @@ async function httpRequest (url, config = {}) {
       ...config.headers
     }
   }
-  if (url.href.includes(apiBaseUrl)) requestOptions.headers['jax-client-token'] = clientToken
+  if (url.href.includes(apiBaseUrl)) {
+    requestOptions.headers['jax-client-token'] = clientToken
+    requestOptions.headers['authorization'] = 'Bearer ' + store.state.authentication.access_token
+  }
 
   if (config.body) {
     if (config.body instanceof FormData) {
@@ -42,6 +47,14 @@ async function httpRequest (url, config = {}) {
   return fetch(url, requestOptions)
     .then(async res => {
       return res.json().then(json => {
+        if (!res.ok && json.message) {
+          Vue.$toast.open({
+            message: json.message,
+            type: 'error',
+            position: 'top',
+            duration: 10000
+          })
+        }
         return res.ok ? json : Promise.reject(json)
       })
     })

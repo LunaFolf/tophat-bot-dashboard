@@ -13,7 +13,7 @@
 </template>
 <script>
 import { DateTime } from 'luxon'
-import User from '../../store/models/user.js'
+import User from '@/store/models/user.js'
 
 export default {
   filters: {
