@@ -31,6 +31,14 @@ export default {
       sidebarOpen: 'ui/sidebarOpen'
     })
   },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to) {
+        document.title = to.name ? `JaxBot - ${to.name}` : 'JaxBot'
+      }
+    }
+  },
   methods: {
     shouldShow () {
       if (this.routesToFullscreen.includes(this.$route.name)) return false
