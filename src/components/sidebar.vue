@@ -3,9 +3,9 @@
   <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center clickable" @click="$route.name === 'Dashboard' ? null : $router.push({name:'Dashboard'})">
+      <router-link class="sidebar-brand d-flex align-items-center justify-content-center clickable" :to="{name:'Dashboard'}">
           <img alt="Jax logo" src="../assets/spinner-title.png" height="56px">
-      </a>
+      </router-link>
 
       <span v-for="(section, sectionKey) in sections" :key="'section-' + sectionKey">
         <template v-if="!section.requiresAuth || auth.access_token">
@@ -21,10 +21,10 @@
             :class="{active: $route.name === link.name}"
             class="nav-item"
             >
-            <a class="nav-link" @click="$route.name === link.name ? null : $router.push({name:link.name})">
+            <router-link class="nav-link" :to="{name:link.name}">
                 <i :class="`${link.icon}`"></i>
                 <span>{{link.name}}</span>
-            </a>
+            </router-link>
           </li>
 
         <hr class="sidebar-divider">
