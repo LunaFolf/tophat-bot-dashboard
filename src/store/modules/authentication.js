@@ -9,7 +9,7 @@ const initalState = {
   discriminator: null,
   tag: null,
   avatar: null,
-  mfa_enabled: false
+  permissions: []
 }
 
 const state = {
@@ -42,9 +42,9 @@ const mutations = {
     state.id = user.id,
     state.username = user.username,
     state.discriminator = user.discriminator,
-      state.tag = `${user.username}#${user.discriminator}`,
+    state.tag = `${user.username}#${user.discriminator}`,
     state.avatar = user.avatar,
-    state.mfa_enabled = user.mfa_enabled
+    state.permissions = user.Permissions
   },
   logout (state) {
     for (var key in initalState) {

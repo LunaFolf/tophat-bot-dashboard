@@ -3,18 +3,13 @@
 </template>
 <script>
 import loadingScreen from '@/components/loadingScreen'
-import { getUser } from '../api/discord'
+import { auth } from '../api/auth'
 
 export default {
   components: { loadingScreen },
   created() {
-    const auth = this.$store.getters["authentication/authentication"]
-    if (!auth.access_token) {
-      this.$router.push({ name: 'Dashboard' })
-      return
-    }
-    getUser(auth.access_token).then(res => {
-      this.$store.dispatch("authentication/saveUser", res)
+    auth().then(res => {
+      this.$store.dispatch("authentication/saveUser", res.data.user)
       this.$router.push({ name: 'Dashboard' })
     })
   }

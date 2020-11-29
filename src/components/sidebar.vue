@@ -15,17 +15,21 @@
           {{section.title}}
         </div>
 
-          <li
+          <template
             v-for="(link, linkKey) in section.links"
-            :key="'section-' + sectionKey + '-link-' + linkKey"
-            :class="{active: $route.name === link.name}"
-            class="nav-item"
-            >
-            <router-link class="nav-link" :to="{name:link.name}">
-                <i :class="`${link.icon}`"></i>
-                <span>{{link.name}}</span>
-            </router-link>
-          </li>
+          >
+            <li
+              v-if="link.permission ? hasPermission(link.permission) : true"
+              :key="'section-' + sectionKey + '-link-' + linkKey"
+              :class="{active: $route.name === link.name}"
+              class="nav-item"
+              >
+              <router-link class="nav-link" :to="{name:link.name}">
+                  <i :class="`${link.icon}`"></i>
+                  <span>{{link.name}}</span>
+              </router-link>
+            </li>
+          </template>
 
         <hr class="sidebar-divider">
         </template>
@@ -58,9 +62,9 @@ export default {
           requiresAuth: true,
           links: [
             { name: 'Users', icon: 'far fa-users' },
-            { name: 'Applications', icon: 'far fa-folder' },
-            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fal fa-hand-middle-finger' : 'far fa-exclamation-circle' },
-            { name: 'Bans', icon: 'far fa-ban' }
+            { name: 'Applications', icon: 'far fa-folder', permission: 'application.index' },
+            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fal fa-hand-middle-finger' : 'far fa-exclamation-circle', permission: 'warn.index' },
+            { name: 'Bans', icon: 'far fa-ban', permission: 'ban.index' }
           ]
         }
       ]
@@ -72,6 +76,9 @@ export default {
     })
   },
   methods: {
+    hasPermission(permission) {
+      return this.auth.permissions.includes(permission)
+    },
     signout () {
       this.$store.dispatch('authentication/logout')
     }
