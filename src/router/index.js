@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
-import store from '../store'
+import Dashboard from 'views/Dashboard.vue'
+import store from 'store'
 
 Vue.use(VueRouter)
 
@@ -19,12 +19,12 @@ const routes = [
   {
     path: '/search-results',
     name: 'SearchResults',
-    component: () => import(/* webpackChunkName: "search" */ '../views/SearchResults/index.vue')
+    component: () => import(/* webpackChunkName: "search" */ 'views/SearchResults/index.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "authentication" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "authentication" */ 'views/Login.vue')
   },
   {
     path: '/logout',
@@ -34,37 +34,37 @@ const routes = [
   {
     path: '/warns',
     name: 'Warns',
-    component: () => import(/* webpackChunkName: "warns" */ '../views/Warns/index.vue'),
+    component: () => import(/* webpackChunkName: "warns" */ 'views/Warns/index.vue'),
     beforeEnter: isAuthed
   },
   {
     path: '/bans',
     name: 'Bans',
-    component: () => import(/* webpackChunkName: "bans" */ '../views/Bans/index.vue'),
+    component: () => import(/* webpackChunkName: "bans" */ 'views/Bans/index.vue'),
     beforeEnter: isAuthed
   },
   {
     path: '/users',
     name: 'Users',
-    component: () => import(/* webpackChunkName: "users" */ '../views/Users/index.vue'),
+    component: () => import(/* webpackChunkName: "users" */ 'views/Users/index.vue'),
     beforeEnter: isAuthed
   },
   {
     path: '/users/:id',
     name: 'UsersView',
-    component: () => import(/* webpackChunkName: "users" */ '../views/Users/view.vue'),
+    component: () => import(/* webpackChunkName: "users" */ 'views/Users/view.vue'),
     beforeEnter: isAuthed
   },
   {
     path: '/applications',
     name: 'Applications',
-    component: () => import(/* webpackChunkName: "applications" */ '../views/Applications.vue'),
+    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications.vue'),
     beforeEnter: isAuthed
   },
   {
     path: '/oauth2/discord',
     name: 'OAuthDiscord',
-    component: () => import(/* webpackChunkName: "authentication" */ '../views/OAuth/Discord.vue')
+    component: () => import(/* webpackChunkName: "authentication" */ 'views/OAuth/Discord.vue')
   }
 ]
 

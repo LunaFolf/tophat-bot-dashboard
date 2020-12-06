@@ -35,13 +35,6 @@
         </template>
       </span>
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div v-if="auth.access_token" class="text-center">
-          <button class="rounded-circle border-0 rounded-btn" title="Sign out" @click="signout">
-              <i class="fas fa-sign-out-alt"></i>
-          </button>
-      </div>
-
   </ul>
   <!-- End of Sidebar -->
 </template>
@@ -78,9 +71,6 @@ export default {
   methods: {
     hasPermission(permission) {
       return this.auth.permissions.includes(permission)
-    },
-    signout () {
-      this.$store.dispatch('authentication/logout')
     }
   }
 }

@@ -28,6 +28,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "stylus": "^0.54.8",
     "stylus-loader": "3.0.2",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^4.2.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

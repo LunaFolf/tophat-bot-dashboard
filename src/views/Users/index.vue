@@ -25,7 +25,7 @@
 import { get } from '../../api/users'
 import User from '../../store/models/user.js'
 import userRow from './user-row.vue'
-import spinner from '@/components/spinner'
+import spinner from '@/spinner'
 
 export default {
   components: { userRow, spinner },

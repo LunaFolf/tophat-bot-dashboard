@@ -22,10 +22,10 @@
   </div>
 </template>
 <script>
-import { get } from '@/api/warns'
+import { get } from 'api/warns'
 import warnRow from './warn-row.vue'
-import spinner from '@/components/spinner'
-import User from '@/store/models/user.js'
+import spinner from '@/spinner'
+import User from 'store/models/user.js'
 
 export default {
   components: { spinner, warnRow },

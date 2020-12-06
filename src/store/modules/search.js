@@ -1,6 +1,6 @@
 import User from '../models/user.js'
-import { search as searchEndpoint } from '@/api/search.js'
-import router from '@/router'
+import { search as searchEndpoint } from 'api/search.js'
+import router from 'router'
 
 const state = {
   query: null,

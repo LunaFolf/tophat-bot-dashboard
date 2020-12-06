@@ -30,7 +30,7 @@
           <template v-if="auth.access_token">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
+              @click="$store.dispatch('ui/setPeek', 'profile')"
               id="userDropdown"
               role="button"
               data-toggle="dropdown"
@@ -67,7 +67,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import searchBar from '@/components/searchbar.vue'
+import searchBar from '@/searchbar.vue'
 
 export default {
   components: {

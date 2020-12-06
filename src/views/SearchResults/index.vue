@@ -97,8 +97,8 @@ import userResult from './user.vue'
 import warnResult from './warn.vue'
 import banResult from './ban.vue'
 import applicationResult from './application.vue'
-import noResults from '@/components/noResults.vue'
-import spinner from '@/components/spinner.vue'
+import noResults from '@/noResults.vue'
+import spinner from '@/spinner.vue'
 
 export default {
   components: {

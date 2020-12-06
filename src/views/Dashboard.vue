@@ -94,7 +94,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { get } from '../api/dashboard'
-import spinner from '@/components/spinner'
+import spinner from '@/spinner'
 
 export default {
   name: 'Dashboard',

@@ -33,7 +33,7 @@
 <script>
 import User from '../../store/models/user.js'
 import { get } from '../../api/users'
-import spinner from '@/components/spinner'
+import spinner from '@/spinner'
 
 export default {
   components: { spinner },

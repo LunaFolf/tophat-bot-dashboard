@@ -1,23 +1,30 @@
 <template>
   <div id="wrapper">
     <Sidebar v-show="shouldShow() && sidebarOpen" />
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div
+      id="content-wrapper"
+      :class="{ dontScroll: hideOverflowY }"
+      class="d-flex flex-column"
+    >
       <Navbar v-show="shouldShow()" />
       <div id="content">
         <router-view/>
       </div>
     </div>
+    <peek />
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/sidebar.vue'
-import Navbar from '@/components/navbar.vue'
+import Sidebar from '@/sidebar.vue'
+import Navbar from '@/navbar.vue'
 import { mapGetters } from 'vuex'
+import peek from 'peek'
 
 export default {
   name: 'App',
   components: {
+    peek,
     Sidebar,
     Navbar
   },
@@ -29,7 +36,10 @@ export default {
   computed: {
     ...mapGetters({
       sidebarOpen: 'ui/sidebarOpen'
-    })
+    }),
+    hideOverflowY () {
+      return this.$store.getters['ui/showPeek']
+    }
   },
   watch: {
     $route: {
@@ -47,23 +57,25 @@ export default {
   }
 }
 </script>
-<style>
-@import './assets/css/sb-admin-2.css';
+<style lang="stylus">
+@import '~styles/sb-admin-2.min.css'
 
-#wrapper {
-  background-image: url('./assets/webb.png')
-}
+#wrapper
+  background-image url('~assets/webb.png')
+  max-height 100vh
 
-#content-wrapper {
-  background-color: rgba(255, 255, 255, 0.85)!important;
-}
+#content-wrapper
+  background-color rgba(255, 255, 255, 0.85)!important
+  overflow-y auto
 
-#content {
-  padding: 16px;
-  padding-top: 0px;
-}
+#content
+  padding 16px
+  padding-top 0px
 
-.clickable {
-  cursor: pointer;
-}
+.clickable
+  cursor pointer
+
+.dontScroll
+  overflow-y hidden!important
+
 </style>

@@ -22,10 +22,10 @@
   </div>
 </template>
 <script>
-import { get } from '@/api/bans'
+import { get } from 'api/bans'
 import banRow from './ban-row.vue'
-import spinner from '@/components/spinner'
-import User from '@/store/models/user.js'
+import spinner from '@/spinner'
+import User from 'store/models/user.js'
 
 export default {
   components: { spinner, banRow },

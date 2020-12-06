@@ -2,7 +2,7 @@
   <loading-screen message="Authorizing Discord Token..." />
 </template>
 <script>
-import loadingScreen from '@/components/loadingScreen.vue'
+import loadingScreen from '@/loadingScreen.vue'
 import { postOauth } from '../../api/discord'
 import { DateTime } from 'luxon';
 
@@ -16,6 +16,7 @@ export default {
     next()
   },
   created () {
+    console.log('hi')
     const formData = new FormData();
     formData.append('client_id', process.env.VUE_APP_discord_client_id)
     formData.append('client_secret', process.env.VUE_APP_discord_client_secret)
@@ -23,6 +24,8 @@ export default {
     formData.append('scope', 'identify guilds')
     formData.append('grant_type', 'authorization_code')
     formData.append('redirect_uri', window.location.origin + (this.$router.mode === 'hash' ? '/#/' : '/') + 'oauth2/discord')
+
+    console.log('posting oauth')
 
     postOauth({
       'client_id': process.env.VUE_APP_discord_client_id,

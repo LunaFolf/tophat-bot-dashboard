@@ -2,7 +2,7 @@
   <loading-screen message="Logging into Discord Account..." />
 </template>
 <script>
-import loadingScreen from '@/components/loadingScreen'
+import loadingScreen from '@/loadingScreen'
 import { auth } from '../api/auth'
 
 export default {

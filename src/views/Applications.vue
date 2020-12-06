@@ -38,7 +38,7 @@
 </template>
 <script>
 import { get } from '../api/applications'
-import spinner from '@/components/spinner'
+import spinner from '@/spinner'
 
 export default {
   components: { spinner },

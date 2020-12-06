@@ -1,7 +1,7 @@
 const apiBaseUrl = process.env.VUE_APP_jax_api_url
 const clientToken = process.env.VUE_APP_jax_client_token
 import Vue from 'vue'
-import store from '@/store'
+import store from 'store'
 
 const api = {
   URL (url) {
