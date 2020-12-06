@@ -28,13 +28,15 @@ export default class User extends Model {
 
   get avatarUrl () {
     const cdn = `https://cdn.discordapp.com/`
-    if (this.avatar) return `${cdn}avatars/${this.id}/${this.avatar}.jpg`
+    const ext = this.avatar && this.avatar.startsWith('a_') ? 'gif' : 'jpg'
+    if (this.avatar) return `${cdn}avatars/${this.id}/${this.avatar}.${ext}`
     return `${cdn}embed/avatars/${Number(this.discriminator) % 5}.png`
   }
 
   get avatarFullUrl () {
     const cdn = `https://cdn.discordapp.com/`
-    if (this.avatar) return `${cdn}avatars/${this.id}/${this.avatar}.png`
+    const ext = this.avatar && this.avatar.startsWith('a_') ? 'gif' : 'jpg'
+    if (this.avatar) return `${cdn}avatars/${this.id}/${this.avatar}.${ext}`
     return `${cdn}embed/avatars/${Number(this.discriminator) % 5}.png`
   }
 }
