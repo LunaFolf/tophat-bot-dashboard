@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     logout () {
+      this.$store.dispatch('ui/setPeek', false)
       this.$store.dispatch('authentication/logout')
     }
   }
