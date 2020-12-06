@@ -30,7 +30,7 @@
           <template v-if="auth.access_token">
             <a
               class="nav-link dropdown-toggle"
-              @click="$store.dispatch('ui/setPeek', 'profile')"
+              @click="$store.dispatch('ui/setPeek', { page: 'profile' })"
               id="userDropdown"
               role="button"
               data-toggle="dropdown"

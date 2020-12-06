@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="titleBar">
-      <div
-        class="cursor-pointer logout"
+      <button
+        class="btn btn-primary logout"
         @click="logout"
       >
-        <i class="fal fa-sign-out-alt" /> Logout
-      </div>
+        <i class="fad fa-sign-out-alt mr-2" /> Logout
+      </button>
       <div class="user">
         <img
           class="img-profile rounded-circle"

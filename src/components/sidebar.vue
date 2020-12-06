@@ -19,7 +19,7 @@
             v-for="(link, linkKey) in section.links"
           >
             <li
-              v-if="link.permission ? hasPermission(link.permission) : true"
+              v-if="link.permission ? hasPermissions(link.permission) : true"
               :key="'section-' + sectionKey + '-link-' + linkKey"
               :class="{active: $route.name === link.name}"
               class="nav-item"
@@ -40,24 +40,26 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import authentication from 'mixins/authentication'
 
 export default {
+  mixins: [authentication],
   data () {
     return {
       sections: [
         {
           links: [
-            { name: 'Dashboard', icon: 'fas fa-tachometer-alt' }
+            { name: 'Dashboard', icon: 'fad fa-tachometer-alt' }
           ]
         },
         {
           title: 'Database',
           requiresAuth: true,
           links: [
-            { name: 'Users', icon: 'far fa-users' },
-            { name: 'Applications', icon: 'far fa-folder', permission: 'application.index' },
-            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fal fa-hand-middle-finger' : 'far fa-exclamation-circle', permission: 'warn.index' },
-            { name: 'Bans', icon: 'far fa-ban', permission: 'ban.index' }
+            { name: 'Users', icon: 'fad fa-users' },
+            { name: 'Applications', icon: 'fad fa-folder', permission: 'application.index' },
+            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fad fa-hand-middle-finger' : 'fad fa-exclamation-circle', permission: 'warn.index' },
+            { name: 'Bans', icon: 'fad fa-ban', permission: 'ban.index' }
           ]
         }
       ]
@@ -67,11 +69,6 @@ export default {
     ...mapGetters({
       auth: 'authentication/authentication'
     })
-  },
-  methods: {
-    hasPermission(permission) {
-      return this.auth.permissions.includes(permission)
-    }
   }
 }
 </script>

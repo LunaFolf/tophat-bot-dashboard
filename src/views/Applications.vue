@@ -9,24 +9,24 @@
           <tr>
             <th colspan="2">User</th>
             <th>Type</th>
-            <th>Status</th>
+            <th class="d-none d-sm-table-cell">Status</th>
           </tr>
         </thead>
         <tbody v-if="applications">
           <tr v-for="app in applications" :key="app.id">
             <td colspan="2">
-              <router-link :to="{ name: 'UsersView', params: { id: app.User.id } }">
-                <img class="rounded-circle" width="42px" :src="app.User | avatarUrl">
+              <span class="cursor-pointer" @click="$store.dispatch('ui/setPeek', { page: 'user', data: { userId: app.User.id } })">
+                <img class="rounded-circle d-none d-sm-inline" width="42px" :src="app.User | avatarUrl">
                 <span class="mr-2 ml-2 text-gray-600">{{app.User ? app.User.tag : app.UserId}}</span>
-                <span v-if="app.User.banned" class="badge badge-danger float-right">Banned</span>
-                <span v-else-if="app.User.leftServer" class="badge badge-light float-right">Left Server</span>
-                <span v-if="app.User.bot" class="badge badge-primary float-right mr-1">BOT</span>
-                <span v-if="app.User.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
-                <span v-if="app.User.vip" class="badge badge-dark float-right mr-1">VIP</span>
-              </router-link>
+                <span v-if="app.User.banned" class="badge badge-danger float-right d-none d-sm-inline">Banned</span>
+                <span v-else-if="app.User.leftServer" class="badge badge-light float-right d-none d-sm-inline">Left Server</span>
+                <span v-if="app.User.bot" class="badge badge-primary float-right mr-1 d-none d-sm-inline">BOT</span>
+                <span v-if="app.User.clanMember" class="badge badge-info float-right mr-1 d-none d-sm-inline">Clan Member</span>
+                <span v-if="app.User.vip" class="badge badge-dark float-right mr-1 d-none d-sm-inline">VIP</span>
+              </span>
             </td>
             <td>{{app.ApplicationType.name}}</td>
-            <td>{{app.status | status}}</td>
+            <td class="d-none d-sm-table-cell">{{app.status | status}}</td>
           </tr>
         </tbody>
       </table>

@@ -9,18 +9,31 @@
       v-if="layout"
       class="peek"
     >
-      <component
-        :is="layout"
-        v-if="layout"
-        :key="layout"
-      />
+      <div class="peekWrapper">
+        <component
+          :is="layout"
+          v-if="layout"
+          :key="layout"
+          :bind="showPeek.data"
+          @close="closePeek"
+        />
+        <button
+          title="close peek"
+          type="button"
+          class="btn btn-primary btn-lg rounded-circle closePeek"
+          @click="closePeek"
+          >
+          <i class="fa-2x fad fa-arrow-circle-left"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   components: {
-    profile: () => import('./profile/index.vue')
+    profile: () => import('./profile/index.vue'),
+    user: () => import('./user/index.vue')
   },
   computed: {
     showPeek () {
@@ -31,9 +44,13 @@ export default {
     },
     layout () {
       var layout = null
-      switch (this.showPeek) {
+      if (typeof this.showPeek !== 'object') return layout
+      switch (this.showPeek.page) {
         case 'profile':
           layout = 'profile'
+          break
+        case 'user':
+          layout = 'user'
           break
       }
       return layout
@@ -60,9 +77,23 @@ export default {
   overflow hidden
   background-color rgba(black, 0.75)
 
+.closePeek
+  position absolute
+  left 16px
+  bottom 16px
+  width 64px
+  height 64px
+  display none!important
+  i
+    position absolute
+    left 0
+    right 0
+    top calc(25% - 4px)
+    bottom 0
 
 .peek
   background-color rgba(#fafafa, 95%)
+  background-image url('~assets/webb.png')
   width 720px
   position absolute
   top 0
@@ -73,6 +104,11 @@ export default {
   animation-fill-mode forwards
   animation-timing-function ease-out
   overflow hidden
+
+  .peekWrapper
+    background-color rgba(#fafafa, 75%)
+    width 100%
+    height 100%
 
   .title
     display inline
@@ -86,8 +122,9 @@ export default {
     display flex
     align-items space-between
     justify-content space-between
-    box-shadow 0 1px 8px 1px rgba(black, 0.1)
-    background-color white
+    &:not(.no-shadow)
+      box-shadow 0 1px 8px 1px rgba(black, 0.1)
+      background-color white
 
     .logout
       cursor pointer
@@ -105,7 +142,7 @@ export default {
       justify-content center
 
     img
-      width 45px
+      height 100%
       border-radius 100%
 
   .header
@@ -126,6 +163,8 @@ export default {
   .peek
     width 100vw
     right -100vw
+  .closePeek
+    display inherit!important
 
 @keyframes slideIn
   100%

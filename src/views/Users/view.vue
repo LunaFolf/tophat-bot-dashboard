@@ -45,7 +45,6 @@ export default {
   created () {
     if (!this.user) {
       get().then(res => {
-        this.users = res.data.users
         User.insert({
           data: res.data.users
         })

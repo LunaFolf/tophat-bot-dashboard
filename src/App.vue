@@ -60,6 +60,9 @@ export default {
 <style lang="stylus">
 @import '~styles/sb-admin-2.min.css'
 
+.cursor-pointer
+  cursor pointer
+
 #wrapper
   background-image url('~assets/webb.png')
   max-height 100vh
