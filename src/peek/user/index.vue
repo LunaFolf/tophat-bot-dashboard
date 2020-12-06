@@ -28,8 +28,13 @@
         <span v-if="user.vip" class="badge badge-dark">VIP</span>
       </div>
 
-      <div>
-        <strong>Joined:</strong>&nbsp;{{ user.createdAt | date }}
+      <div class="infoBox">
+        <span>
+          <strong>Joined:</strong>&nbsp;{{ user.createdAt | date }}
+        </span>
+        <span>
+          <strong>Discord ID:</strong>&nbsp;{{ user.id }} <clipboard :value="user.id" />
+        </span>
       </div>
 
       <div class="header">
@@ -68,10 +73,11 @@ import User from '../../store/models/user.js'
 import { get } from '../../api/users'
 import spinner from '@/spinner'
 import authentication from 'mixins/authentication'
+import clipboard from '@/clipboard'
 
 export default {
   mixins: [authentication],
-  components: { spinner },
+  components: { spinner, clipboard },
   filters: {
     date (date) {
       return DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
@@ -110,6 +116,12 @@ export default {
   padding 0
   padding-top 16px
   padding-left 32px
+
+  .infoBox
+    display block
+    width 100%
+    span
+      display block
 
 .titleBar
   height 150px
