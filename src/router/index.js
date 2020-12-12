@@ -58,7 +58,7 @@ const routes = [
   {
     path: '/applications',
     name: 'Applications',
-    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications.vue'),
+    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
     beforeEnter: isAuthed
   },
   {
