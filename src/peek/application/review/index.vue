@@ -36,59 +36,59 @@
         </span>
       </div>
 
-      <template v-if="hasPermission('application.review') && app.status === -1">
+      <template v-if="hasPermission('application.review') || app.UserId === $store.state.authentication.id">
 
-      <hr>
+        <hr>
 
-      <div class="header">
-        Submitted Data
-      </div>
-      <div
-        v-for="(value, key) in formData"
-        class="form-group"
-        :key="key"
-      >
-        <label :for="`${key}-preview`"> {{ key | label }} </label>
-        <input class="form-control" :value="value" :id="`${key}-preview`" readonly>
-      </div>
-
-      <hr>
-
-        <div class="d-flex align-items-center">
-          <button
-            class="btn btn-block btn-accept"
-            :class="{active: accept === true}"
-            @click="accept = true"
-          >
-            <i class="fad fa-6x fa-check-square"></i>
-          </button>
-          <button
-            class="btn btn-block btn-deny"
-            :class="{active: accept === false}"
-            @click="accept = false"
-          >
-            <i class="fad fa-6x fa-times-square"></i>
-          </button>
+        <div class="header">
+          Submitted Data
+        </div>
+        <div
+          v-for="(value, key) in formData"
+          class="form-group"
+          :key="key"
+        >
+          <label :for="`${key}-preview`"> {{ key | label }} </label>
+          <input class="form-control" :value="value" :id="`${key}-preview`" readonly>
         </div>
 
-        <div v-if="accept === false" class="form-group">
-          <label for="denyReason">Reason for denying the application</label>
-          <textarea if="denyReason" v-model="reason" class="form-control" />
-        </div>
+        <hr>
 
-        <div class="d-flex align-items-center">
-          <button
-            class="btn btn-block btn-primary"
-            type="button"
-            :disabled="!canSubmit"
-            @click="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </template>
+        <template v-if="app.status === -1">
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-block btn-accept"
+              :class="{active: accept === true}"
+              @click="accept = true"
+            >
+              <i class="fad fa-6x fa-check-square"></i>
+            </button>
+            <button
+              class="btn btn-block btn-deny"
+              :class="{active: accept === false}"
+              @click="accept = false"
+            >
+              <i class="fad fa-6x fa-times-square"></i>
+            </button>
+          </div>
 
-      <template v-else-if="hasPermission('application.review') || app.UserId === $store.state.authentication.id">
+          <div v-if="accept === false" class="form-group">
+            <label for="denyReason">Reason for denying the application</label>
+            <textarea if="denyReason" v-model="reason" class="form-control" />
+          </div>
+
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-block btn-primary"
+              type="button"
+              :disabled="!canSubmit"
+              @click="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </template>
+
         <div class="infoBox">
           <span>
             <strong>Application Status:</strong>&nbsp;{{ app.status | status }}
