@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 import { Database, install as dbInstall } from '@vuex-orm/core'
 
+import applications from './modules/applications.js'
+
 import search from './modules/search.js'
 import authentication from './modules/authentication.js'
 import ui from './modules/ui.js'
@@ -17,7 +19,7 @@ database.register(User, users)
 
 const store = new Vuex.Store({
   modules: {
-    authentication, ui, search
+    applications, authentication, ui, search
   },
   plugins: [
     dbInstall(database),

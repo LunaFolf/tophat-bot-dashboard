@@ -16,12 +16,13 @@
           :key="layout"
           :bind="showPeek.data"
           @close="closePeek"
+          @go-back="goBack"
         />
         <button
           title="close peek"
           type="button"
           class="btn btn-primary btn-lg rounded-circle closePeek"
-          @click="closePeek"
+          @click="goBack"
           >
           <i class="fa-2x fad fa-arrow-circle-left"></i>
         </button>
@@ -33,7 +34,9 @@
 export default {
   components: {
     profile: () => import('./profile/index.vue'),
-    user: () => import('./user/index.vue')
+    user: () => import('./user/index.vue'),
+    applicationNew: () => import('./application/new/index.vue'),
+    applicationReview: () => import('./application/review/index.vue')
   },
   computed: {
     showPeek () {
@@ -52,6 +55,12 @@ export default {
         case 'user':
           layout = 'user'
           break
+        case 'application.new':
+          layout = 'applicationNew'
+          break
+        case 'application.review':
+          layout = 'applicationReview'
+          break
       }
       return layout
     }
@@ -62,6 +71,9 @@ export default {
     },
     closePeek () {
       this.$store.dispatch('ui/setPeek', false)
+    },
+    goBack () {
+      this.$store.dispatch('ui/peekGoBack')
     }
   }
 }
@@ -144,6 +156,13 @@ export default {
     img
       height 100%
       border-radius 100%
+
+  .content
+    .infoBox
+      display block
+      width 100%
+      span
+        display block
 
   .header
     font-family politica, sans-serif

@@ -1,5 +1,5 @@
 import http from './http.js'
 
-export function get () {
-  return http.get('/users')
+export function get (id) {
+  return http.get('/users' + (id ? `/${id}` : ''))
 }

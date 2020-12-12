@@ -81,4 +81,13 @@ export default {
 .dontScroll
   overflow-y hidden!important
 
+.btn-accept
+  color #1cc88a
+.btn-deny
+  color #e74a3b
+
+.btn-accept, .btn-deny
+  &:not(.active)
+    color #858796
+
 </style>

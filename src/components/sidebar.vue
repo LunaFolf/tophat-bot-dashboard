@@ -57,7 +57,7 @@ export default {
           requiresAuth: true,
           links: [
             { name: 'Users', icon: 'fad fa-users' },
-            { name: 'Applications', icon: 'fad fa-folder', permission: 'application.index' },
+            { name: 'Applications', icon: 'fad fa-folder' },
             { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fad fa-hand-middle-finger' : 'fad fa-exclamation-circle', permission: 'warn.index' },
             { name: 'Bans', icon: 'fad fa-ban', permission: 'ban.index' }
           ]

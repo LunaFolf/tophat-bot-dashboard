@@ -11,7 +11,7 @@
         type="button"
         class="close"
         aria-label="Close"
-        @click="$emit('close')"
+        @click="$emit('go-back')"
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -69,8 +69,8 @@
 </template>
 <script>
 import { DateTime } from 'luxon'
-import User from '../../store/models/user.js'
-import { get } from '../../api/users'
+import User from 'store/models/user.js'
+import { get } from 'api/users'
 import spinner from '@/spinner'
 import authentication from 'mixins/authentication'
 import clipboard from '@/clipboard'
@@ -91,13 +91,13 @@ export default {
       return this.$store.state.authentication.id === this.user.id
     },
     canViewBans () {
-      return this.userIsCurrentAuthUser
+      return this.userIsCurrentAuthUser || this.hasPermission('ban.index')
     },
     canViewWarns () {
-      return this.userIsCurrentAuthUser
+      return this.userIsCurrentAuthUser || this.hasPermission('warn.index')
     },
     canViewApplications () {
-      return this.userIsCurrentAuthUser
+      return this.userIsCurrentAuthUser || this.hasPermission('application.index')
     }
   },
   created () {
@@ -116,12 +116,6 @@ export default {
   padding 0
   padding-top 16px
   padding-left 32px
-
-  .infoBox
-    display block
-    width 100%
-    span
-      display block
 
 .titleBar
   height 150px
