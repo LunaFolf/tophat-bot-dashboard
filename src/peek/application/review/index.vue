@@ -89,7 +89,7 @@
           </div>
         </template>
 
-        <div class="infoBox">
+        <div v-else class="infoBox">
           <span>
             <strong>Application Status:</strong>&nbsp;{{ app.status | status }}
           </span>

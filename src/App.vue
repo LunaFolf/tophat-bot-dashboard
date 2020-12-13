@@ -83,11 +83,16 @@ export default {
 
 .btn-accept
   color #1cc88a
+  &:hover
+    color #1cc88a
 .btn-deny
   color #e74a3b
+  &:hover
+    color #e74a3b
 
 .btn-accept, .btn-deny
   &:not(.active)
     color #858796
-
+  &:focus
+    box-shadow none
 </style>

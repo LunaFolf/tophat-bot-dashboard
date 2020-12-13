@@ -121,6 +121,7 @@ export default {
     background-color rgba(#fafafa, 75%)
     width 100%
     height 100%
+    overflow-y auto
 
   .title
     display inline
