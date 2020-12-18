@@ -38,9 +38,9 @@ const mutations = {
     }
   },
   peekGoBack (state) {
+    state.peekHistory.pop()
     if (state.peekHistory.length  <= 1) state.showPeek = false
     else {
-      state.peekHistory.pop()
       state.showPeek = state.peekHistory[state.peekHistory.length - 1]
     }
   }
