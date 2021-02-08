@@ -50,11 +50,12 @@
         >
           <label :for="`${key}-preview`"> {{ key | label }} </label>
           <input class="form-control" :value="value" :id="`${key}-preview`" readonly>
+          <a v-if="key === 'steamid'" target="_blank" :href="'https://steamcommunity.com/profiles/' + value">Preview steam profile</a>
         </div>
 
         <hr>
 
-        <template v-if="app.status === -1">
+        <template v-if="app.status === -1 & hasPermission('application.review')">
           <div class="d-flex align-items-center">
             <button
               class="btn btn-block btn-accept"
@@ -89,7 +90,7 @@
           </div>
         </template>
 
-        <div v-else class="infoBox">
+        <div v-else-if="app.status !== -1" class="infoBox">
           <span>
             <strong>Application Status:</strong>&nbsp;{{ app.status | status }}
           </span>

@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
       <label for="clanApplicationSteamId">What is your SteamID64? (i.e. 76561198037289710)</label>
-      <input v-model.number="formData.steamid" type="number" id="clanApplicationSteamId" class="form-control" aria-describedby="clanApplicationHelpBlock" />
+      <input v-model="formData.steamid" type="text" id="clanApplicationSteamId" class="form-control" aria-describedby="clanApplicationHelpBlock" />
       <small id="clanApplicationSteamIdHelpBlock" class="form-text text-muted">
         Failure to give the correct 64-bit format will result in a deny.
       </small>
@@ -56,7 +56,7 @@ export default {
 
       const setAge = notUndefined(age) && (age > 0)
       const setHours = notUndefined(hours) && (hours > 0)
-      const setSteamId = notUndefined(steamid) && (steamid > 0) && (steamid.toString().length === 17)
+      const setSteamId = notUndefined(steamid) && (steamid.length === 17)
       const setWarns = notUndefined(warns)
 
       return setAge && setHours && setSteamId && setWarns
