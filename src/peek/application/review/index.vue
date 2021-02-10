@@ -195,7 +195,7 @@ export default {
       }).then(res => {
         if (res.status !== 'success') {
           this.$toast.open({
-            message: 'Failed reviewing the application, it may have already been reviewed',
+            message: res.message || res.data.status,
             type: 'error',
             position: 'top',
             duration: 10000
