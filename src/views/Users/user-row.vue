@@ -7,8 +7,8 @@
         <span v-if="user.banned" class="badge badge-danger float-right">Banned</span>
         <span v-else-if="user.leftServer" class="badge badge-light float-right">Left Server</span>
         <span v-if="user.bot" class="badge badge-primary float-right mr-1">BOT</span>
-        <span v-if="user.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
-        <span v-if="user.vip" class="badge badge-dark float-right mr-1">VIP</span>
+
+        <user-role-tags :roles="user.roles" float />
       </span>
     </td>
     <td class="d-none d-xl-table-cell">
@@ -17,8 +17,12 @@
   </tr>
 </template>
 <script>
+import UserRoleTags from 'components/userRoleTags'
 import { DateTime } from 'luxon'
 export default {
+  components: {
+    UserRoleTags
+  },
   filters: {
     date (date) {
       return DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
@@ -28,6 +32,15 @@ export default {
     user: {
       required: true,
       type: Object
+    }
+  },
+  computed: {
+    sortedRoles () {
+      let roles = [...this.user.roles]
+      if (!roles.length) return []
+
+      roles = roles.sort((a, b) => a.level - b.level)
+      return roles
     }
   }
 }

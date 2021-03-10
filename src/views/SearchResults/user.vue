@@ -9,6 +9,8 @@
         <span v-if="user.bot" class="badge badge-primary float-right mr-1">BOT</span>
         <span v-if="user.clanMember" class="badge badge-info float-right mr-1">Clan Member</span>
         <span v-if="user.vip" class="badge badge-dark float-right mr-1">VIP</span>
+
+        <user-role-tags :roles="user.roles" float />
       </span>
     </td>
     <td class="d-none d-xl-table-cell">
@@ -17,7 +19,11 @@
   </tr>
 </template>
 <script>
+import UserRoleTags from 'components/userRoleTags'
 export default {
+  components: {
+    UserRoleTags
+  },
   props: ['user']
 }
 </script>

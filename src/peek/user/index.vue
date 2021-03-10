@@ -20,6 +20,9 @@
       <div class="title">
         {{ user.name }}
       </div>
+      <div>
+        <user-role-tags :roles="user.roles" />
+      </div>
       <div class="header m-0 mb-4">
         <span v-if="user.banned" class="badge badge-danger">Banned</span>
         <span v-else-if="user.leftServer" class="badge badge-light">Left Server</span>
@@ -74,10 +77,11 @@ import { get } from 'api/users'
 import spinner from '@/spinner'
 import authentication from 'mixins/authentication'
 import clipboard from '@/clipboard'
+import UserRoleTags from 'components/userRoleTags'
 
 export default {
   mixins: [authentication],
-  components: { spinner, clipboard },
+  components: { spinner, clipboard, UserRoleTags },
   filters: {
     date (date) {
       return DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
