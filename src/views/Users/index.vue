@@ -34,6 +34,8 @@ export default {
       return User.query()
         .orderBy('leftServer', 'asc')
         .orderBy('bot', 'asc')
+
+        .orderBy('roleLevel', 'desc')
         .orderBy('createdAt', 'asc')
         .get()
     }

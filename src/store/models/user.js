@@ -16,7 +16,10 @@ export default class User extends Model {
       banned: this.boolean(false),
       clanMember: this.boolean(false),
       vip: this.boolean(false),
-      createdAt: this.string()
+      createdAt: this.string(),
+      steamId: this.string(),
+      roles: this.attr([]),
+      highestRole: this.attr({})
     }
   }
 
@@ -38,5 +41,9 @@ export default class User extends Model {
     const ext = this.avatar && this.avatar.startsWith('a_') ? 'gif' : 'jpg'
     if (this.avatar) return `${cdn}avatars/${this.id}/${this.avatar}.${ext}`
     return `${cdn}embed/avatars/${Number(this.discriminator) % 5}.png`
+  }
+
+  get roleLevel () {
+    return this.highestRole.level || 0
   }
 }
