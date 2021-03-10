@@ -49,7 +49,7 @@ export default {
     color lighten($color, $lightenAmount)
     background-color $color
   .manager
-    $color = rgb(26, 188, 156)
+    $color = rgb(155, 89, 182)
     color lighten($color, $lightenAmount)
     background-color $color
   .owner
