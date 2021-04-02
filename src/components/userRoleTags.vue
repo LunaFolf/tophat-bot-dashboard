@@ -2,8 +2,8 @@
   <span>
     <span
       v-for="role in sortedRoles"
-      :key="`${role.guild.id}-${role.name}`"
-      :title="role.guild.name"
+      :key="`${role.guild ? role.guild.id : 'global'}-${role.name}`"
+      :title="role.guild ? role.guild.name : ''"
       :class="`${float ? 'float-right' : ''} ${role.tag}`"
       class="badge badge-secondary mr-1"
     >
