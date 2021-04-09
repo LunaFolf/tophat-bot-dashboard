@@ -7,14 +7,6 @@
           :src="user.avatarFullUrl"
         >
       </div>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        @click="$emit('go-back')"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
     <div v-if="user" class="content">
       <div class="title">
@@ -44,7 +36,7 @@
         Bans
       </div>
       <template v-if="canViewBans">
-        <em>This information is currently unavailable</em>
+        <em>This feature is not yet available</em>
       </template>
       <em v-else>You do not have permission to view this user's bans</em>
 
@@ -52,7 +44,7 @@
         Warns
       </div>
       <template v-if="canViewWarns">
-        <em>This information is currently unavailable</em>
+        <em>This feature is not yet available</em>
       </template>
       <em v-else>You do not have permission to view this user's warns</em>
 
@@ -60,7 +52,7 @@
         Applications
       </div>
       <template v-if="canViewApplications">
-        <em>This information is currently unavailable</em>
+        <em>This feature is not yet available</em>
       </template>
       <em v-else>You do not have permission to view this user's applications</em>
 
@@ -127,14 +119,4 @@ export default {
   padding-left 32px
   padding-top 32px
   padding-right 32px
-  .close
-    position relative
-    width 32px
-    height 32px
-    *
-      position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
 </style>

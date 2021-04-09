@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from 'views/Dashboard.vue'
+import Preauth from 'views/PreAuth.vue'
 import store from 'store'
 
 Vue.use(VueRouter)
@@ -13,8 +14,21 @@ function isAuthed (to, from, next) {
 const routes = [
   {
     path: '/',
+    name: 'Preauth',
+    component: Preauth,
+    beforeEnter: (to, from, next) => {
+      if (!store.getters['authentication/isAuthed']) next()
+      else next({ name: 'Dashboard' })
+    }
+  },
+  {
+    path: '/',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    beforeEnter: (to, from, next) => {
+      if (store.getters['authentication/isAuthed']) next()
+      else next({ name: 'Preauth' })
+    }
   },
   {
     path: '/search-results',
@@ -29,7 +43,7 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    redirect: { name: 'Dashboard' }
+    redirect: { name: 'Preauth' }
   },
   {
     path: '/warns',
@@ -50,8 +64,25 @@ const routes = [
     beforeEnter: isAuthed
   },
   {
+    path: '/clan-members',
+    name: 'ClanMembers',
+    component: () => import(/* webpackChunkName: "users" */ 'views/Users/index.vue'),
+    props: {
+      filters: {
+        clanMembers: true
+      }
+    },
+    beforeEnter: isAuthed
+  },
+  {
     path: '/applications',
     name: 'Applications',
+    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
+    beforeEnter: isAuthed
+  },
+  {
+    path: '/applications',
+    name: 'StaffApplications',
     component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
     beforeEnter: isAuthed
   },

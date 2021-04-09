@@ -18,14 +18,14 @@
           @close="closePeek"
           @go-back="goBack"
         />
-        <button
-          title="close peek"
-          type="button"
-          class="btn btn-primary btn-lg rounded-circle closePeek"
-          @click="goBack"
-          >
-          <i class="fa-2x fad fa-arrow-circle-left"></i>
-        </button>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        @click="goBack"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
       </div>
     </div>
   </div>
@@ -89,13 +89,12 @@ export default {
   overflow hidden
   background-color rgba(black, 0.75)
 
-.closePeek
-  position absolute
-  left 16px
-  bottom 16px
-  width 64px
-  height 64px
-  display none!important
+.close
+  position fixed
+  right 16px
+  top 16px
+  width 32px
+  height 32px
   i
     position absolute
     left 0

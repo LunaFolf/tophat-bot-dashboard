@@ -1,3 +1,4 @@
+const querystring = require('querystring')
 const apiBaseUrl = process.env.VUE_APP_jax_api_url
 const clientToken = process.env.VUE_APP_jax_client_token
 import Vue from 'vue'
@@ -18,6 +19,9 @@ const api = {
       body: data instanceof FormData || data instanceof URLSearchParams ? data : JSON.stringify(data),
       headers
     })
+  },
+  serialize (params) {
+    return querystring.stringify(params)
   }
 }
 

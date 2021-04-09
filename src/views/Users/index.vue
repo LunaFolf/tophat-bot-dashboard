@@ -29,9 +29,18 @@ import spinner from '@/spinner'
 
 export default {
   components: { userRow, spinner },
+  props: {
+    filters: {
+      type: Object,
+      default: () => { return {} }
+    }
+  },
   computed: {
     users () {
       return User.query()
+        .where('roles', (roles) => this.filters.clanMembers ? roles.some(role => {
+          return (role.tag === 'clan_leader') || (role.tag === 'clan_member')
+        }) : true)
         .orderBy('leftServer', 'asc')
         .orderBy('bot', 'asc')
 
@@ -40,14 +49,24 @@ export default {
         .get()
     }
   },
-  created () {
-    get().then(res => {
-      this.users = res.data.users
-      User.deleteAll()
-      User.insert({
-        data: res.data.users
+  watch: {
+    filters () {
+      this.updateUserList()
+    }
+  },
+  methods: {
+    updateUserList () {
+      get(null, this.filters).then(res => {
+        this.users = res.data.users
+        User.deleteAll()
+        User.insert({
+          data: res.data.users
+        })
       })
-    })
+    }
+  },
+  created () {
+    this.updateUserList()
   }
 }
 </script>

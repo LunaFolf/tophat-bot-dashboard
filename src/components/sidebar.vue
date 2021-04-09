@@ -8,7 +8,7 @@
       </router-link>
 
       <span v-for="(section, sectionKey) in sections" :key="'section-' + sectionKey">
-        <template v-if="!section.requiresAuth || auth.access_token">
+        <template v-if="(!section.requiresAuth || auth.access_token) && numberOfAvailableLinks(section.links)">
         <hr v-if="sectionKey < 1" class="sidebar-divider my-0">
 
         <div v-if="section.title" class="sidebar-heading">
@@ -26,7 +26,7 @@
               >
               <router-link class="nav-link" :to="{name:link.name}">
                   <i :class="`${link.icon}`"></i>
-                  <span>{{link.name}}</span>
+                  <span>{{link.title}}</span>
               </router-link>
             </li>
           </template>
@@ -49,17 +49,31 @@ export default {
       sections: [
         {
           links: [
-            { name: 'Dashboard', icon: 'fad fa-tachometer-alt' }
+            { name: 'Dashboard', title: 'Dashboard', icon: 'fad fa-tachometer-alt' }
           ]
         },
         {
           title: 'Database',
           requiresAuth: true,
           links: [
-            { name: 'Users', icon: 'fad fa-users' },
-            { name: 'Applications', icon: 'fad fa-folder' },
-            { name: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fad fa-hand-middle-finger' : 'fad fa-exclamation-circle', permission: 'warn.index' },
-            { name: 'Bans', icon: 'fad fa-ban', permission: 'ban.index' }
+            { name: 'Users', title: 'Users', icon: 'fad fa-users' }
+          ]
+        },
+        {
+          title: 'Clan Management',
+          requiresAuth: true,
+          links: [
+            { name: 'ClanMembers', title: 'Clan Members', icon: 'fad fa-users' },
+            { name: 'Applications', title: 'Applications', icon: 'fad fa-folder' }
+          ]
+        },
+        {
+          title: 'Admin',
+          requiresAuth: true,
+          links: [
+            { name: 'StaffApplications', title: 'Staff Applications', icon: 'fad fa-folder', permission: 'application.review' },
+            { name: 'Warns', title: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fad fa-hand-middle-finger' : 'fad fa-exclamation-circle', permission: 'warn.index' },
+            { name: 'Bans', title: 'Bans', icon: 'fad fa-ban', permission: 'ban.index' }
           ]
         }
       ]
@@ -69,6 +83,15 @@ export default {
     ...mapGetters({
       auth: 'authentication/authentication'
     })
+  },
+  methods: {
+    numberOfAvailableLinks (links) {
+      let count = 0
+      links.forEach(link => {
+        if (!link.permission || this.hasPermissions(link.permission)) count++
+      })
+      return count
+    }
   }
 }
 </script>

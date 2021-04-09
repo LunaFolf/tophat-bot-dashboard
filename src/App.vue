@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      routesToFullscreen: ['Login', 'OAuthDiscord']
+      routesToFullscreen: ['Preauth', 'Login', 'OAuthDiscord']
     }
   },
   computed: {
