@@ -49,7 +49,8 @@ export default {
       sections: [
         {
           links: [
-            { name: 'Dashboard', title: 'Dashboard', icon: 'fad fa-tachometer-alt' }
+            { name: 'Dashboard', title: 'Dashboard', icon: 'fad fa-tachometer-alt', permission: 'can.view.admin.statistics' },
+            { name: 'Home', title: 'Home', icon: 'fad fa-home' }
           ]
         },
         {

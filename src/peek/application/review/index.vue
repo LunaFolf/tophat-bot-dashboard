@@ -53,6 +53,25 @@
           <a v-if="key === 'steamid'" target="_blank" :href="'https://steamcommunity.com/profiles/' + value">Preview steam profile</a>
         </div>
 
+        <div class="header">
+          Submitted Files
+        </div>
+
+        <template v-if="app.Uploads.length">
+          <div v-for="upload in app.Uploads" :key="upload.id">
+            <img
+              :src="upload.data"
+              class="cursor-pointer"
+              width="100%"
+              @click="expandImage(upload.data)"
+            />
+          </div>
+        </template>
+        <template v-else>
+          <em>No files have been uploaded by the submitter</em>
+        </template>
+
+
         <hr>
 
         <template v-if="app.status === -1 & hasPermission('application.review')">
@@ -188,6 +207,17 @@ export default {
     }
   },
   methods: {
+    expandImage(data) {
+      if (!data) return
+
+      var image = new Image()
+      image.src = data
+      image.style = "width: 100%"
+
+      var w = window.open("", "JaxBot Application - Upload File Preview")
+      w.document.write(image.outerHTML)
+      w.document.close()
+    },
     submit () {
       reviewApplication(this.app.id, {
         accept: this.accept,

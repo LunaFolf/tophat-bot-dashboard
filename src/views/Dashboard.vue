@@ -3,15 +3,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
-    <div v-if="!auth.access_token" class="text-center">
-      <div>Please login</div>
-      <br>
-      <a class="nav-link" :href="`${discordOAuth.urlBase}?client_id=${discordOAuth.clientId}&redirect_uri=${discordOAuth.redirectUrl}&response_type=code&scope=identify%20guilds`">
-        <span class="text-gray-600 small">Log in with Discord</span>
-        <img class="img-profile" src="../assets/img/discord_logo_colour.svg" width="56px">
-      </a>
-    </div>
-    <div class="row" v-else-if="dashboard">
+    <div class="row" v-if="dashboard">
 
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">

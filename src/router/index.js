@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from 'views/Dashboard.vue'
+import Home from 'views/Home.vue'
 import Preauth from 'views/PreAuth.vue'
 import store from 'store'
+
+import { hasPermissions } from 'utils/authentication'
+
 
 Vue.use(VueRouter)
 
@@ -25,6 +29,15 @@ const routes = [
     path: '/',
     name: 'Dashboard',
     component: Dashboard,
+    beforeEnter: (to, from, next) => {
+      if (hasPermissions(['can.view.admin.statistics'])) next()
+      else next({ name: 'Home' })
+    }
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
     beforeEnter: (to, from, next) => {
       if (store.getters['authentication/isAuthed']) next()
       else next({ name: 'Preauth' })

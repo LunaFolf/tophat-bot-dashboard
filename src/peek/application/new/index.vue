@@ -23,9 +23,7 @@
         @submit="submit"
       />
     </div>
-    <div class="footer">
-      {{ data }}
-    </div>
+    <div class="footer"></div>
   </div>
 </template>
 <script>
