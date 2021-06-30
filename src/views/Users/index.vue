@@ -5,12 +5,6 @@
     </div>
     <div v-if="users && users.length" class="container-fluid table-responsive">
       <table class="table table-hover">
-        <thead>
-          <tr class="d-none d-xl-table-row">
-            <th>Name</th>
-            <th>ID</th>
-          </tr>
-        </thead>
         <tbody>
           <user-row v-for="user in users" :key="user.id" :user="user" />
         </tbody>

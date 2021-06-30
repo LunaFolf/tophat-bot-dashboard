@@ -16,6 +16,12 @@
           </option>
         </select>
       </div>
+      <template v-if="selectedType">
+        <em>
+          {{ selectedType.description }}
+        </em>
+        <hr>
+      </template>
       <component
         v-model="data"
         :is="formToRender"
@@ -31,7 +37,8 @@ import { submit as submitApplication } from 'api/applications.js'
 // eslint-disable-next-line no-unused-vars
 export default {
   components: {
-    clan: () => import('./forms/clan.vue')
+    clan: () => import('./forms/clan.vue'),
+    missing: () => import('./forms/missing-form.vue')
   },
   data () {
     return {
@@ -49,7 +56,7 @@ export default {
         case 'clan.new':
           return 'clan'
         default:
-          return null
+          return 'missing'
       }
     }
   },

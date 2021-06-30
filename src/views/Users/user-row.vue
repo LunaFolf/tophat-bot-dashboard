@@ -11,9 +11,6 @@
         <user-role-tags :roles="user.roles" float />
       </span>
     </td>
-    <td class="d-none d-xl-table-cell">
-      {{ user.id }}
-    </td>
   </tr>
 </template>
 <script>

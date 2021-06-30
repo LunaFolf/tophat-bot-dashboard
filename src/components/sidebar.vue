@@ -57,22 +57,21 @@ export default {
           title: 'Database',
           requiresAuth: true,
           links: [
-            { name: 'Users', title: 'Users', icon: 'fad fa-users' }
+            { name: 'Users', title: 'Users', icon: 'fad fa-users' },
+            { name: 'Applications', title: 'Applications', icon: 'fad fa-folder' }
           ]
         },
         {
           title: 'Clan Management',
           requiresAuth: true,
           links: [
-            { name: 'ClanMembers', title: 'Clan Members', icon: 'fad fa-users' },
-            { name: 'Applications', title: 'Applications', icon: 'fad fa-folder' }
+            { name: 'ClanMembers', title: 'Clan Members', icon: 'fad fa-users' }
           ]
         },
         {
           title: 'Admin',
           requiresAuth: true,
           links: [
-            { name: 'StaffApplications', title: 'Staff Applications', icon: 'fad fa-folder', permission: 'application.review' },
             { name: 'Warns', title: 'Warns', icon: this.$store.state.authentication.id === '443539243235672066' ? 'fad fa-hand-middle-finger' : 'fad fa-exclamation-circle', permission: 'warn.index' },
             { name: 'Bans', title: 'Bans', icon: 'fad fa-ban', permission: 'ban.index' }
           ]

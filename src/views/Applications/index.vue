@@ -15,8 +15,6 @@
         <thead>
           <tr>
             <th colspan="2">User</th>
-            <th>Type</th>
-            <th class="d-none d-sm-table-cell">Status</th>
           </tr>
         </thead>
         <tbody>

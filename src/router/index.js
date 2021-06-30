@@ -94,12 +94,6 @@ const routes = [
     beforeEnter: isAuthed
   },
   {
-    path: '/applications',
-    name: 'StaffApplications',
-    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
-    beforeEnter: isAuthed
-  },
-  {
     path: '/oauth2/discord',
     name: 'OAuthDiscord',
     component: () => import(/* webpackChunkName: "authentication" */ 'views/OAuth/Discord.vue')

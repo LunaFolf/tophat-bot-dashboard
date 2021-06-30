@@ -26,13 +26,15 @@
       <input v-model.number="formData.warns" min="0" type="number" id="clanApplicationWarns" class="form-control" />
     </div>
     <div class="form-group">
-      <label for="clanApplicationWarnsProof" class="form-label">Please provide screenshot proof of your warns.</label>
+      <label for="clanApplicationWarnsProof" class="form-label">Please provide screenshot proof of your Fudgy DarkRP warns.</label>
+      <label for="clanApplicationWarnsProof" class="form-label">You can access this by doing <code>!warns</code> in-game.</label>
       <input
         class="form-control-file"
         type="file"
         id="clanApplicationWarnsProof"
         multiple
          @change="filesUploaded"
+         accept=".png, .jpeg, .jpg"
         />
     </div>
     <button
