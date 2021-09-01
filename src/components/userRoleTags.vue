@@ -32,16 +32,12 @@ export default {
   $lightenAmount = 75
   $darkenAmount = 25
 
-  .clan_member
-    $color = #667fff
-    color lighten($color, $lightenAmount)
-    background-color $color
-  .clan_leader
-    $color = #3556ff
-    color lighten($color, $lightenAmount)
-    background-color $color
   .vip
     $color = #f47fff
+    color lighten($color, $lightenAmount)
+    background-color $color
+  .trusted
+    $color = #346cf5
     color lighten($color, $lightenAmount)
     background-color $color
   .admin

@@ -76,23 +76,23 @@ const routes = [
     component: () => import(/* webpackChunkName: "users" */ 'views/Users/index.vue'),
     beforeEnter: isAuthed
   },
-  {
-    path: '/clan-members',
-    name: 'ClanMembers',
-    component: () => import(/* webpackChunkName: "users" */ 'views/Users/index.vue'),
-    props: {
-      filters: {
-        clanMembers: true
-      }
-    },
-    beforeEnter: isAuthed
-  },
-  {
-    path: '/applications',
-    name: 'Applications',
-    component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
-    beforeEnter: isAuthed
-  },
+  // {
+  //   path: '/clan-members',
+  //   name: 'ClanMembers',
+  //   component: () => import(/* webpackChunkName: "users" */ 'views/Users/index.vue'),
+  //   props: {
+  //     filters: {
+  //       clanMembers: true
+  //     }
+  //   },
+  //   beforeEnter: isAuthed
+  // },
+  // {
+  //   path: '/applications',
+  //   name: 'Applications',
+  //   component: () => import(/* webpackChunkName: "applications" */ 'views/Applications/index.vue'),
+  //   beforeEnter: isAuthed
+  // },
   {
     path: '/oauth2/discord',
     name: 'OAuthDiscord',

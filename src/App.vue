@@ -68,7 +68,7 @@ export default {
   max-height 100vh
 
 #content-wrapper
-  background-color rgba(255, 255, 255, 0.85)!important
+  // background-color rgba(255, 255, 255, 0.85)!important
   overflow-y auto
 
 #content

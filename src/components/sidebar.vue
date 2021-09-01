@@ -57,15 +57,7 @@ export default {
           title: 'Database',
           requiresAuth: true,
           links: [
-            { name: 'Users', title: 'Users', icon: 'fad fa-users' },
-            { name: 'Applications', title: 'Applications', icon: 'fad fa-folder' }
-          ]
-        },
-        {
-          title: 'Clan Management',
-          requiresAuth: true,
-          links: [
-            { name: 'ClanMembers', title: 'Clan Members', icon: 'fad fa-users' }
+            { name: 'Users', title: 'Users', icon: 'fad fa-users' }
           ]
         },
         {
